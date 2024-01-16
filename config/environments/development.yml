@@ -1,0 +1,8 @@
+server:
+  ports: 8080
+db:
+  DB_HOST: "db"
+  DB_NAME: "ad_form"
+  DB_PORT: 3306
+  DB_USER: "test"
+  DB_PASSWORD: "test"
