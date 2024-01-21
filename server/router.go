@@ -1,14 +1,12 @@
 package server
 
-import (
-	"adform-go/controller"
+import "fmt"
 
-	"github.com/gin-gonic/gin"
-)
-
-
-func NewRouter() (*gin.Engine, error) {
-	router:= gin.Default()
-	router.GET("/", controller.NotImplemented)
-	return router, nil
+func Init() error {
+	r, err := NewRouter()
+	if err != nil {
+		return err
+	} 
+	r.Run(fmt.Sprintf(":%d", 8080))
+	return nil
 }

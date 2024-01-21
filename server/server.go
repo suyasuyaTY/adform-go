@@ -1,12 +1,18 @@
 package server
 
-import "fmt"
+import (
+	"adform-go/controller"
 
-func Init() error {
-	r, err := NewRouter()
-	if err != nil {
-		return err
-	} 
-	r.Run(fmt.Sprintf(":%d", 8080))
-	return nil
+	"github.com/gin-gonic/gin"
+)
+
+
+func NewRouter() (*gin.Engine, error) {
+	router:= gin.Default()
+	router.LoadHTMLGlob("views/*.html")
+	router.Static("/assets", "./assets")
+	router.GET("/", controller.Index)
+	router.GET("/form", controller.NewAdForm)
+	router.POST("/form", controller.CreateForm)
+	return router, nil
 }

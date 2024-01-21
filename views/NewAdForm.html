@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<title>ad-form</title>
+	</head>
+	<body>
+		<h1>フォーム</h1>
+		<form id="myform" action="/form" method="post">
+			<div>
+				<label>名前</label>
+				<input type="text" name="name" value="ナメロウ" />
+			</div>
+			<div>
+				<label>メールアドレス</label>
+				<input type="mail" name="mail" />
+			</div>
+			<div>
+				<label>日本語バナー文言</label>
+				<input type="text" name="messageJa" />
+			</div>
+			<div>
+				<label>英語バナー文言</label>
+				<input type="text" name="messageEn" />
+			</div>
+			<div>
+				<label>日本語URL</label>
+				<input type="url" name="urlJa" />
+			</div>
+			<div>
+				<label>英語URL</label>
+				<input type="url" name="urlEn" />
+			</div>
+			<div>
+				<label>掲載期間</label><br />
+				<label>開始日</label>
+				<input type="date" name="start-date" />
+				<label>終了日</label>
+				<input type="date" name="end-date" />
+			</div>
+			<div>
+				<input id="submit-button" type="button" value="登録" />
+			</div>
+		</form>
+		<script type="text/javascript" src="/assets/scripts/toJSON.js"></script>
+	</body>
+</html>
