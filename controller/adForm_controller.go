@@ -32,5 +32,6 @@ func CreateForm(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": errorMessages})
 		return
 	}
+	body.Create()
 	ctx.JSON(http.StatusOK, gin.H{"OK": body})
 }

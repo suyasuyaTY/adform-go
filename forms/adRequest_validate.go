@@ -1,6 +1,7 @@
 package forms
 
 import (
+	"fmt"
 	"regexp"
 	"time"
 
@@ -20,4 +21,21 @@ func mailValidation(fl validator.FieldLevel) bool {
 func DateValidation(fl validator.FieldLevel) bool {
 	_, err := time.Parse("2006-01-02", fl.Field().String())
 	return err == nil
+}
+
+func PeriodValidation(start string, end string) bool {
+	startDate, err := time.Parse("2006-01-02", start)
+	if err != nil {
+		return false
+	}
+	endDate, err := time.Parse("2006-01-02", end)
+	if err != nil {
+		return false
+	}
+	period := endDate.Sub(startDate).Hours()/24
+	fmt.Println(period)
+	if period < 0 || period > 14 {
+		return false
+	}
+	return true
 }

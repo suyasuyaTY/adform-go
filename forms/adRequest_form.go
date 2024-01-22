@@ -1,7 +1,9 @@
 package forms
 
 import (
+	"adform-go/models"
 	"fmt"
+	"time"
 
 	"github.com/go-playground/validator/v10"
 )
@@ -19,8 +21,24 @@ type AdRequestForm struct {
 }
 
 func (af *AdRequestForm) Create() {
-	fmt.Println(af.Name)
-	fmt.Println(af.Mail)
+	adRequest := new(models.AdRequest)
+	adRequest.Name = af.Name
+	adRequest.Mail = af.Mail
+	adRequest.MessageJa = af.MessageJa
+	adRequest.MessageEn = af.MessageEn
+	adRequest.URLJa = af.URLJa
+	adRequest.URLEn = af.URLEn
+	startDate, err := time.Parse("2006-01-02", af.StartDate)
+	if err != nil {
+		return 
+	}
+	adRequest.StartDate = startDate
+	endDate, err := time.Parse("2006-01-02", af.EndDate)
+	if err != nil {
+		return 
+	}
+	adRequest.EndDate = endDate
+	fmt.Println(adRequest)
 }
 
 func (af *AdRequestForm) Validate() []string {
@@ -48,6 +66,12 @@ func (af *AdRequestForm) Validate() []string {
 				errorMessage = "日付の形式が違います"
 			}
 			errorMessages = append(errorMessages, errorMessage)
+		}
+	}else {
+		if !PeriodValidation(af.StartDate, af.EndDate) {
+			errorMessage := "期間が正しくありません"
+			errorMessages = append(errorMessages, errorMessage)
+
 		}
 	}
 	
